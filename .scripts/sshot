@@ -1,0 +1,5 @@
+#!/bin/zsh
+
+import /home/quirtt/Pictures/screenshot.png
+xclip -se c -t image/png -i ~/Pictures/screenshot.png
+
