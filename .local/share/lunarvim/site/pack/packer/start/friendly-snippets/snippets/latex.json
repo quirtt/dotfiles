@@ -1,0 +1,560 @@
+{
+  "Asymptote Sample": {
+    "prefix": [
+      "asysamp"
+    ],
+    "body": [
+      "%%A=dir(120); B=dir(210); C=dir(330);",
+      "%%O1=circumcenter(A,M,B1); C1 = -A+2*foot(O1,A,C);",
+      "%%X=extension(A,P,B1,C1);",
+      "%%fill(circumcircle(A,B,C), blue+opacity(0.02));",
+      "%%fill(A--B--C--cycle, red+opacity(0.03));",
+      "%%draw(A--B--C--A, red);",
+      "%%draw(arc(M, circumradius(B1, C1, B2), 190, 365), dashed + heavycyan);",
+      "%%draw(arc(circumcenter(A,B2,C2), circumradius(A, B2, C2), 55, 145),dotted + red);"
+    ]
+  },
+  "Template": {
+    "prefix": [
+      "template"
+    ],
+    "body": [
+      "\\documentclass[11pt]{scrartcl}",
+      "",
+      "\\usepackage{cancel}",
+      "\\usepackage[utf8]{inputenc}",
+      "\\usepackage{mathtools}",
+      "\\usepackage[sexy]{evan}",
+      "",
+      "\\title{${1}}",
+      "\\author{Himadri Mandal}",
+      "",
+      "\\begin{document}",
+      "\\maketitle",
+      "",
+      "\\section{Solution}",
+      "\t$0",
+      "\\end{document}"
+    ],
+    "description": "Default template for evansty supported Olympiad template."
+  },
+  "Section": {
+    "prefix": [
+      "section",
+      "\\section"
+    ],
+    "body": [
+      "\\section{$1}$0"
+    ],
+    "description": "Insert a new section."
+  },
+  "Theorem": {
+    "prefix": [
+      "theorem",
+      "\\theorem"
+    ],
+    "body": [
+      "\\begin{theorem*}",
+      "\t$0",
+      "\\end{theorem*}"
+    ],
+    "description": "Insert a theorem, whose style is already defined in the template. The serial number is automatically generated according to the section."
+  },
+  "Problem": {
+    "prefix": [
+      "problem",
+      "\\problem"
+    ],
+    "body": [
+      "\\begin{problem}[${1:name of the problem}]",
+      "\t$0",
+      "\\end{problem}"
+    ],
+    "description": "Insert a problem. evansty supported, whose style is already defined in the template. The serial number is automatically generated according to the section."
+  },
+  "Definition": {
+    "prefix": [
+      "definition",
+      "\\definition"
+    ],
+    "body": [
+      "\\begin{definition}[${1:name of the definition}]",
+      "\t$0",
+      "\\end{definition}"
+    ],
+    "description": "Insert a definition, evan styled."
+  },
+  "Proof": {
+    "prefix": [
+      "proof",
+      "\\proof"
+    ],
+    "body": [
+      "\\begin{proof}",
+      "\t$0",
+      "\\end{proof}"
+    ],
+    "description": "Insert a proof, evan styled."
+  },
+  "Lemma": {
+    "prefix": [
+      "lemma",
+      "\\lemma"
+    ],
+    "body": [
+      "\\begin{lemma}",
+      "\t$0",
+      "\\end{lemma}"
+    ],
+    "description": "Insert a lemma, evan styled."
+  },
+  "Solution": {
+    "prefix": [
+      "soln",
+      "\\soln"
+    ],
+    "body": [
+      "\\begin{soln}",
+      "\t$0",
+      "\\end{soln}"
+    ],
+    "description": "Insert a lemma, evan styled."
+  },
+  "Claim": {
+    "prefix": [
+      "claim",
+      "\\claim"
+    ],
+    "body": [
+      "\\begin{claim*}",
+      "\t$0",
+      "\\end{claim*}",
+      "\\begin{proof}",
+      "",
+      "\\end{proof}",
+      "\\hrule",
+      "",
+      "\\bigskip"
+    ],
+    "description": "Insert a lemma, evan styled."
+  },
+  "subscript": {
+    "prefix": "__",
+    "body": "_{${1:${TM_SELECTED_TEXT}}}",
+    "description": "subscript"
+  },
+  "superscript": {
+    "prefix": "**",
+    "body": "^{${1:${TM_SELECTED_TEXT}}}",
+    "description": "superscript"
+  },
+  "etc": {
+    "prefix": "...",
+    "body": "\\dots",
+    "description": "\\dots"
+  },
+  "infinity": {
+    "prefix": "@8",
+    "body": "\\infty",
+    "description": "infinity symbol"
+  },
+  "supcirc": {
+    "prefix": "@0",
+    "body": "^\\circ",
+    "description": "superscript circ"
+  },
+  "dot": {
+    "prefix": "@;",
+    "body": "\\dot{${1:${TM_SELECTED_TEXT}}}$0",
+    "description": "dot"
+  },
+  "ddot": {
+    "prefix": "@:",
+    "body": "\\ddot{${1:${TM_SELECTED_TEXT}}}$0",
+    "description": "ddot"
+  },
+  "equiv": {
+    "prefix": "@=",
+    "body": "\\equiv",
+    "description": "equiv symbol"
+  },
+  "times": {
+    "prefix": "@*",
+    "body": "\\times",
+    "description": "times symbol"
+  },
+  "leq": {
+    "prefix": "@<",
+    "body": "\\leq",
+    "description": "leq symbol"
+  },
+  "geq": {
+    "prefix": "@>",
+    "body": "\\geq",
+    "description": "geq symbol"
+  },
+  "sqrt": {
+    "prefix": "@2",
+    "body": "\\sqrt{${1:${TM_SELECTED_TEXT}}}$0",
+    "description": "sqrt command"
+  },
+  "int": {
+    "prefix": "@I",
+    "body": "\\int_{$1}^{$2}$0",
+    "description": "integral"
+  },
+  "bigcup": {
+    "prefix": "@+",
+    "body": "\\bigcup",
+    "description": "bigcup"
+  },
+  "bigcap": {
+    "prefix": "@-",
+    "body": "\\bigcap",
+    "description": "bigcap"
+  },
+  "Forall": {
+    "prefix": "@A",
+    "body": "\\ \\forall \\ ",
+    "description": "FORALL"
+  },
+  "align": {
+    "prefix": "BAL",
+    "body": "\\begin{align}\n\t${0:${TM_SELECTED_TEXT}}\n\\end{align}",
+    "description": "align environment"
+  },
+  "align*": {
+    "prefix": "BSAL",
+    "body": "\\begin{align*}\n\t${0:${TM_SELECTED_TEXT}}\n\\end{align*}",
+    "description": "align* environment"
+  },
+  "itemize": {
+    "prefix": "BIT",
+    "body": "\\begin{itemize}\n\t\\item ${0:${TM_SELECTED_TEXT}}\n\\end{itemize}",
+    "description": "itemize environment"
+  },
+  "enumerate": {
+    "prefix": "BEN",
+    "body": "\\begin{enumerate}\n\t\\item ${0:${TM_SELECTED_TEXT}}\n\\end{enumerate}",
+    "description": "enumerate environment"
+  },
+  "cases": {
+    "prefix": "BCAS",
+    "body": "\\begin{cases}\n\t${0:${TM_SELECTED_TEXT}}\n\\end{cases}",
+    "description": "cases environment"
+  },
+  "figure": {
+    "prefix": "BFI",
+    "body": "\\begin{figure}[${1:htbp}]\n\t\\centering\n\t${0:${TM_SELECTED_TEXT}}\n\t\\caption{${2:<caption>}}\n\t\\label{${3:<label>}}\n\\end{figure}",
+    "description": "figure"
+  },
+  "table": {
+    "prefix": "BTA",
+    "body": "\\begin{table}[${1:htbp}]\n\t\\centering\\begin{tabular}{${4:<columns>}}\n\t\t${0:${TM_SELECTED_TEXT}}\n\t\\end{tabular}\n\t\\caption{${2:<caption>}}\n\t\\label{${3:<label>}}\n\\end{table}",
+    "description": "table"
+  },
+  "textnormal": {
+    "prefix": "FNO",
+    "body": "\\textnormal{${1:${TM_SELECTED_TEXT:text}}}",
+    "description": "normal font"
+  },
+  "textit": {
+    "prefix": "FIT",
+    "body": "\\textit{${1:${TM_SELECTED_TEXT:text}}}",
+    "description": "italic font"
+  },
+  "underline": {
+    "prefix": "FUL",
+    "body": "\\underline{${1:${TM_SELECTED_TEXT:text}}}",
+    "description": "Underline text"
+  },
+  "textbf": {
+    "prefix": "FBF",
+    "body": "\\textbf{${1:${TM_SELECTED_TEXT:text}}}",
+    "description": "bold font"
+  },
+  "textsuperscript": {
+    "prefix": "FSS",
+    "body": "\\textsuperscript{${1:${TM_SELECTED_TEXT:text}}}",
+    "description": "Make text a superscript"
+  },
+  "textsubscript": {
+    "prefix": "FBS",
+    "body": "\\textsubscript{${1:${TM_SELECTED_TEXT:text}}}",
+    "description": "Make text a superscript"
+  },
+  "mathrm": {
+    "prefix": "MRM",
+    "body": "\\mathrm{${1:${TM_SELECTED_TEXT:text}}}",
+    "description": "math roman font"
+  },
+  "mathbf": {
+    "prefix": "MBF",
+    "body": "\\mathbf{${1:${TM_SELECTED_TEXT:text}}}",
+    "description": "math bold font"
+  },
+  "mathbb": {
+    "prefix": "MBB",
+    "body": "\\mathbb{${1:${TM_SELECTED_TEXT:text}}}",
+    "description": "math blackboard bold font"
+  },
+  "mathcal": {
+    "prefix": "MCA",
+    "body": "\\mathcal{${1:${TM_SELECTED_TEXT:text}}}",
+    "description": "math caligraphic font"
+  },
+  "mathit": {
+    "prefix": "MIT",
+    "body": "\\mathit{${1:${TM_SELECTED_TEXT:text}}}",
+    "description": "math italic font"
+  },
+  "mathtt": {
+    "prefix": "MTT",
+    "body": "\\mathtt{${1:${TM_SELECTED_TEXT:text}}}",
+    "description": "math typewriter font"
+  },
+  "alpha": {
+    "prefix": "@a",
+    "body": "\\alpha",
+    "description": "alpha"
+  },
+  "beta": {
+    "prefix": "@b",
+    "body": "\\beta",
+    "description": "beta"
+  },
+  "chi": {
+    "prefix": "@c",
+    "body": "\\chi",
+    "description": "chi"
+  },
+  "delta": {
+    "prefix": "@d",
+    "body": "\\delta",
+    "description": "delta"
+  },
+  "epsilon": {
+    "prefix": "@e",
+    "body": "\\epsilon",
+    "description": "epsilon"
+  },
+  "varepsilon": {
+    "prefix": "@ve",
+    "body": "\\varepsilon",
+    "description": "varepsilon"
+  },
+  "phi": {
+    "prefix": "@f",
+    "body": "\\phi",
+    "description": "phi"
+  },
+  "varphi": {
+    "prefix": "@vf",
+    "body": "\\varphi",
+    "description": "varphi"
+  },
+  "gamma": {
+    "prefix": "@g",
+    "body": "\\gamma",
+    "description": "gamma"
+  },
+  "eta": {
+    "prefix": "@h",
+    "body": "\\eta",
+    "description": "eta"
+  },
+  "iota": {
+    "prefix": "@i",
+    "body": "\\iota",
+    "description": "iota"
+  },
+  "lambda": {
+    "prefix": "@l",
+    "body": "\\lambda",
+    "description": "lambda"
+  },
+  "mu": {
+    "prefix": "@m",
+    "body": "\\mu",
+    "description": "mu"
+  },
+  "nu": {
+    "prefix": "@n",
+    "body": "\\nu",
+    "description": "nu"
+  },
+  "pi": {
+    "prefix": "@p",
+    "body": "\\pi",
+    "description": "pi"
+  },
+  "theta": {
+    "prefix": "@q",
+    "body": "\\theta",
+    "description": "theta"
+  },
+  "vartheta": {
+    "prefix": "@vq",
+    "body": "\\vartheta",
+    "description": "vartheta"
+  },
+  "rho": {
+    "prefix": "@r",
+    "body": "\\rho",
+    "description": "rho"
+  },
+  "sigma": {
+    "prefix": "@s",
+    "body": "\\sigma",
+    "description": "sigma"
+  },
+  "varsigma": {
+    "prefix": "@vs",
+    "body": "\\varsigma",
+    "description": "varsigma"
+  },
+  "tau": {
+    "prefix": "@t",
+    "body": "\\tau",
+    "description": "tau"
+  },
+  "upsilon": {
+    "prefix": "@u",
+    "body": "\\upsilon",
+    "description": "upsilon"
+  },
+  "omega": {
+    "prefix": "@o",
+    "body": "\\omega",
+    "description": "omega"
+  },
+  "wedge": {
+    "prefix": "@&",
+    "body": "\\wedge",
+    "description": "wedge"
+  },
+  "xi": {
+    "prefix": "@x",
+    "body": "\\xi",
+    "description": "xi"
+  },
+  "psi": {
+    "prefix": "@y",
+    "body": "\\psi",
+    "description": "psi"
+  },
+  "zeta": {
+    "prefix": "@z",
+    "body": "\\zeta",
+    "description": "zeta"
+  },
+  "Delta": {
+    "prefix": "@D",
+    "body": "\\Delta",
+    "description": "Delta"
+  },
+  "Phi": {
+    "prefix": "@F",
+    "body": "\\Phi",
+    "description": "Phi"
+  },
+  "Gamma": {
+    "prefix": "@G",
+    "body": "\\Gamma",
+    "description": "Gamma"
+  },
+  "Theta": {
+    "prefix": "@Q",
+    "body": "\\Theta",
+    "description": "Theta"
+  },
+  "Lambda": {
+    "prefix": "@L",
+    "body": "\\Lambda",
+    "description": "Lambda"
+  },
+  "Xi": {
+    "prefix": "@X",
+    "body": "\\Xi",
+    "description": "Xi"
+  },
+  "Psi": {
+    "prefix": "@Y",
+    "body": "\\Psi",
+    "description": "Psi"
+  },
+  "Sigma": {
+    "prefix": "@S",
+    "body": "\\Sigma",
+    "description": "Sigma"
+  },
+  "Upsilon": {
+    "prefix": "@U",
+    "body": "\\Upsilon",
+    "description": "Upsilon"
+  },
+  "Omega": {
+    "prefix": "@W",
+    "body": "\\Omega",
+    "description": "Omega"
+  },
+  "(": {
+    "prefix": "@)",
+    "body": "\\left( ${1:${TM_SELECTED_TEXT}} \\right)",
+    "description": "left( ... right)"
+  },
+  "{": {
+    "prefix": "@}",
+    "body": "\\left\\{ ${1:${TM_SELECTED_TEXT}} \\right\\\\\\\\}",
+    "description": "left{ ... right}"
+  },
+  "[": {
+    "prefix": "@]",
+    "body": "\\left[ ${1:${TM_SELECTED_TEXT}} \\right]",
+    "description": "left[ ... right]"
+  },
+  "wrapEnv": {
+    "body": "\n\\begin{$1}\n\t${0:${TM_SELECTED_TEXT}}\n\\end{$1}",
+    "description": "Wrap selection into an environment"
+  },
+  "asydot": {
+    "prefix": "asydot",
+    "body": "dot(\"$ ${1} $\", ${1}, dir(${1}));",
+    "description": "Snippet of asymptote olympiad package dots"
+  },
+  "part": {
+    "prefix": "SPA",
+    "body": "\\part{${1:${TM_SELECTED_TEXT}}}",
+    "description": "part"
+  },
+  "chapter": {
+    "prefix": "SCH",
+    "body": "\\chapter{${1:${TM_SELECTED_TEXT}}}",
+    "description": "chapter"
+  },
+  "section": {
+    "prefix": "SSE",
+    "body": "\\section{${1:${TM_SELECTED_TEXT}}}",
+    "description": "section"
+  },
+  "subsection": {
+    "prefix": "SSS",
+    "body": "\\subsection{${1:${TM_SELECTED_TEXT}}}",
+    "description": "subsection"
+  },
+  "subsubsection": {
+    "prefix": "SS2",
+    "body": "\\subsubsection{${1:${TM_SELECTED_TEXT}}}",
+    "description": "subsubsection"
+  },
+  "paragraph": {
+    "prefix": "SPG",
+    "body": "\\paragraph{${1:${TM_SELECTED_TEXT}}}",
+    "description": "paragraph"
+  },
+  "subparagraph": {
+    "prefix": "SSP",
+    "body": "\\subparagraph{${1:${TM_SELECTED_TEXT}}}",
+    "description": "subparagraph"
+  }
+}
