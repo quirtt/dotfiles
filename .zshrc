@@ -116,3 +116,4 @@ export OTIS="$HOME/Documents/OTIS"
 open(){ evince $OTIS/texfiles/$1/$1.pdf &| }
 run(){ latexmk -pdf -pvc -f -interaction=nonstopmode $1 1>/dev/null }
 export SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0
+wifi(){ bash $HOME/.scripts/wifi.sh $1 $2 }
