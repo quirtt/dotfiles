@@ -1,0 +1,18 @@
+{
+    "ShowHiddenChannels": false,
+    "BDFDB": true,
+    "BetterSearchPage": true,
+    "Translator": true,
+    "SpotifyControls": true,
+    "NoReplyMention": true,
+    "HideChannels": true,
+    "ZeresPluginLibrary": true,
+    "SpotifyListenAlong": true,
+    "PluginRepo": true,
+    "BetterCodeblocks": true,
+    "Apate": false,
+    "ThemeRepo": true,
+    "TypingIndicator": false,
+    "BugReportHelper": true,
+    "InvisibleTyping": true
+}
