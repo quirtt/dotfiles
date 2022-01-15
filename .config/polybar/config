@@ -60,7 +60,7 @@ font-5 = Font Awesome 5 Brands:style=Regular
 
 modules-left = i3
 modules-center = xwindow
-modules-right = filesystem pulseaudio xkeyboard mpd memory cpu wlan battery temperature date powermenu
+modules-right = filesystem pulseaudio xkeyboard memory cpu wlan isvpn battery temperature date powermenu
 
 separator =  
 
@@ -238,7 +238,6 @@ label = %percentage_used%%
 type = internal/network
 interface = wlp2s0
 interval = 3.0
-
 format-connected =  <label-connected>
 format-connected-underline = #9f78e1
 label-connected = %essid%
@@ -437,3 +436,15 @@ margin-top = 5
 margin-bottom = 5
 
 ; vim:ft=dosini
+
+[module/isvpn]
+type = custom/script
+exec = ~/.config/polybar/scripts/isvpn.sh
+interval = 2
+click-left = windscribe connect best
+click-right = windscribe disconnect
+format-prefix = "  "
+format-prefix-foreground = #FFBB00
+label = %output%
+format-background = 
+format-foreground = 
