@@ -370,8 +370,8 @@ focus_on_window_activation none
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Screenshot
-# not work [keybind]
-bindsym --release Print exec flameshot gui
+bindsym --release Print exec $HOME/.scripts/sshot
+bindsym --release Shift+Print exec flameshot gui
 
 # Battery warning 
 # i3-battery-popup
