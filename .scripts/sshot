@@ -1,0 +1,5 @@
+#!/bin/zsh
+mkdir /tmp/Pictures
+import /tmp/Pictures/screenshot.png
+xclip -se c -t image/png -i /tmp/Pictures/screenshot.png
+
