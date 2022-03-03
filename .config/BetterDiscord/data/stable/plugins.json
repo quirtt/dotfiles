@@ -14,5 +14,8 @@
     "ThemeRepo": true,
     "TypingIndicator": false,
     "BugReportHelper": true,
-    "InvisibleTyping": true
+    "InvisibleTyping": true,
+    "DoNotTrack": true,
+    "AutoIdleOnAFK": false,
+    "BetterFormattingRedux": true
 }

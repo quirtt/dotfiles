@@ -2,7 +2,7 @@
  * @name ThemeRepo
  * @author DevilBro
  * @authorId 278543574059057154
- * @version 2.2.7
+ * @version 2.2.9
  * @description Allows you to download all Themes from BD's Website within Discord
  * @invite Jx3TjNS
  * @donate https://www.paypal.me/MircoWittrien
@@ -17,20 +17,12 @@ module.exports = (_ => {
 		"info": {
 			"name": "ThemeRepo",
 			"author": "DevilBro",
-			"version": "2.2.7",
+			"version": "2.2.9",
 			"description": "Allows you to download all Themes from BD's Website within Discord"
 		}
 	};
 
-	return (window.Lightcord && !Node.prototype.isPrototypeOf(window.Lightcord) || window.LightCord && !Node.prototype.isPrototypeOf(window.LightCord) || window.Astra && !Node.prototype.isPrototypeOf(window.Astra)) ? class {
-		getName () {return config.info.name;}
-		getAuthor () {return config.info.author;}
-		getVersion () {return config.info.version;}
-		getDescription () {return "Do not use LightCord!";}
-		load () {BdApi.alert("Attention!", "By using LightCord you are risking your Discord Account, due to using a 3rd Party Client. Switch to an official Discord Client (https://discord.com/) with the proper BD Injection (https://betterdiscord.app/)");}
-		start() {}
-		stop() {}
-	} : !window.BDFDB_Global || (!window.BDFDB_Global.loaded && !window.BDFDB_Global.started) ? class {
+	return !window.BDFDB_Global || (!window.BDFDB_Global.loaded && !window.BDFDB_Global.started) ? class {
 		getName () {return config.info.name;}
 		getAuthor () {return config.info.author;}
 		getVersion () {return config.info.version;}
@@ -87,7 +79,7 @@ module.exports = (_ => {
 			INSTALLED: {
 				backgroundColor: "var(--bdfdb-green)",
 				icon: "CHECKMARK",
-				text: "USER_SETTINGS_VOICE_INSTALLED_LABEL"
+				text: "installed"
 			},
 			OUTDATED: {
 				backgroundColor: "var(--bdfdb-red)",
@@ -1171,43 +1163,16 @@ module.exports = (_ => {
 			}
 			
 			onStart () {
-				BDFDB.PatchUtils.patch(this, (BDFDB.ModuleUtils.findByName("SettingsView") || {}).prototype, "getPredicateSections", {after: e => {
-					if (BDFDB.ArrayUtils.is(e.returnValue) && e.returnValue.findIndex(n => n.section && (n.section.toLowerCase() == "changelog" || n.section == BDFDB.DiscordConstants.UserSettingsSections.CHANGE_LOG || n.section.toLowerCase() == "logout" || n.section == BDFDB.DiscordConstants.UserSettingsSections.LOGOUT))) {
-						e.returnValue = e.returnValue.filter(n => n.section != "themerepo");
-						let index = e.returnValue.indexOf(e.returnValue.find(n => n.section == "pluginrepo") || e.returnValue.find(n => n.section == "themes") || e.returnValue.find(n => n.section == BDFDB.DiscordConstants.UserSettingsSections.DEVELOPER_OPTIONS) || e.returnValue.find(n => n.section == BDFDB.DiscordConstants.UserSettingsSections.HYPESQUAD_ONLINE));
-						if (index > -1) {
-							e.returnValue.splice(index + 1, 0, {
-								section: "themerepo",
-								label: "Theme Repo",
-								element: _ => {
-									let options = Object.assign({}, this.settings.filters);
-									options.updated = options.updated && !showOnlyOutdated;
-									options.outdated = options.outdated || showOnlyOutdated;
-									options.downloadable = options.downloadable && !showOnlyOutdated;
-									options.sortKey = forcedSort || Object.keys(sortKeys)[0];
-									options.orderKey = forcedOrder || Object.keys(orderKeys)[0];
-									options.useLightMode = BDFDB.DiscordUtils.getTheme() == BDFDB.disCN.themelight;
-									options.useThemeFixer = false;
-									options.useCustomCSS = false;
-									
-									return BDFDB.ReactUtils.createElement(RepoListComponent, options);
-								}
-							});
-							if (!e.returnValue.find(n => n.section == "plugins" || n.section == "pluginrepo")) e.returnValue.splice(index + 1, 0, {section: "DIVIDER"});
-						}
-					}
-				}});
-				
 				this.forceUpdateAll();
 
 				this.loadThemes();
 
-				updateInterval = BDFDB.TimeUtils.interval(_ => {this.checkForNewThemes();}, 1000*60*30);
+				updateInterval = BDFDB.TimeUtils.interval(_ => this.checkForNewThemes(), 1000*60*30);
 			}
 			
 			onStop () {
 				BDFDB.TimeUtils.clear(updateInterval);
-				BDFDB.TimeUtils.clear(loading && loading.timeout);
+				BDFDB.TimeUtils.clear(loading.timeout);
 
 				this.forceUpdateAll();
 
@@ -1243,6 +1208,34 @@ module.exports = (_ => {
 			
 			processSettingsView (e) {
 				if (e.node) searchString = "";
+				else {
+					if (!BDFDB.PatchUtils.isPatched(this, e.component, "getPredicateSections")) BDFDB.PatchUtils.patch(this, e.component, "getPredicateSections", {after: e2 => {
+						if (BDFDB.ArrayUtils.is(e2.returnValue) && e2.returnValue.findIndex(n => n.section && (n.section.toLowerCase() == "changelog" || n.section == BDFDB.DiscordConstants.UserSettingsSections.CHANGE_LOG || n.section.toLowerCase() == "logout" || n.section == BDFDB.DiscordConstants.UserSettingsSections.LOGOUT))) {
+							e2.returnValue = e2.returnValue.filter(n => n.section != "themerepo");
+							let index = e2.returnValue.indexOf(e2.returnValue.find(n => n.section == "pluginrepo") || e2.returnValue.find(n => n.section == "themes") || e2.returnValue.find(n => n.section == BDFDB.DiscordConstants.UserSettingsSections.DEVELOPER_OPTIONS) || e2.returnValue.find(n => n.section == BDFDB.DiscordConstants.UserSettingsSections.HYPESQUAD_ONLINE));
+							if (index > -1) {
+								e2.returnValue.splice(index + 1, 0, {
+									section: "themerepo",
+									label: "Theme Repo",
+									element: _ => {
+										let options = Object.assign({}, this.settings.filters);
+										options.updated = options.updated && !showOnlyOutdated;
+										options.outdated = options.outdated || showOnlyOutdated;
+										options.downloadable = options.downloadable && !showOnlyOutdated;
+										options.sortKey = forcedSort || Object.keys(sortKeys)[0];
+										options.orderKey = forcedOrder || Object.keys(orderKeys)[0];
+										options.useLightMode = BDFDB.DiscordUtils.getTheme() == BDFDB.disCN.themelight;
+										options.useThemeFixer = false;
+										options.useCustomCSS = false;
+										
+										return BDFDB.ReactUtils.createElement(RepoListComponent, options);
+									}
+								});
+								if (!e2.returnValue.find(n => n.section == "plugins" || n.section == "pluginrepo")) e2.returnValue.splice(index + 1, 0, {section: "DIVIDER"});
+							}
+						}
+					}});
+				}
 			}
 			
 			processStandardSidebarView (e) {
@@ -1404,7 +1397,7 @@ module.exports = (_ => {
 				};
 				
 				BDFDB.LibraryRequires.request("https://api.betterdiscord.app/v1/store/themes", (error, response, body) => {
-					if (!error && body) try {
+					if (!error && body && response.statusCode == 200) try {
 						grabbedThemes = BDFDB.ArrayUtils.keySort(JSON.parse(body).filter(n => n), "name");
 						
 						BDFDB.DataUtils.save(BDFDB.ArrayUtils.numSort(grabbedThemes.map(n => n.id)).join(" "), this, "cached");
@@ -1434,6 +1427,8 @@ module.exports = (_ => {
 						for (let i = 0; i <= 20; i++) checkTheme();
 					}
 					catch (err) {BDFDB.NotificationUtils.toast("Failed to load Theme Store", {type: "danger"});}
+					if (response && response.statusCode == 403) BDFDB.NotificationUtils.toast("Failed to fetch Theme Store from the Website Api due to DDoS Protection", {type: "danger"});
+					else if (response && response.statusCode == 404) BDFDB.NotificationUtils.toast("Failed to fetch Theme Store from the Website Api due to Connection Issue", {type: "danger"});
 				});
 			}
 

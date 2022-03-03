@@ -1,5 +1,6 @@
 {
 	"changeLogs": {
+		"BDFDB": "2.1.4",
 		"BetterSearchPage": "1.2.0",
 		"ShowHiddenChannels": "3.0.4",
 		"SpotifyControls": "1.2.4",
@@ -14,7 +15,7 @@
 		"useChromium": false
 	},
 	"hashes": {
-		"0BDFDB.data.json": "c35a4b2bcbc527842ec129ad31e83324e25680e3",
+		"0BDFDB.data.json": "80d580208c8f9b1eb9be735772c4810e1d156945",
 		"0BDFDB.raw.css": "a1036e10077b9457f3903795204f7dbd91d7646d"
 	}
 }

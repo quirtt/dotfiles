@@ -371,11 +371,11 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Screenshot
 # not work [keybind]
-bindsym --release Print exec --no-startup-id $HOME/.scripts/sshot
+bindsym --release Print exec flameshot gui
 
 # Battery warning 
 # i3-battery-popup
-exec_always --no-startup-id i3-battery-popup -L 20 -l 10 -m "Battery is low! Consider charging!" -t 2m -N -i $HOME/.icons/batterylow.png
+exec_always --no-startup-id killall -q i3-battery-popup; i3-battery-popup -L 20 -l 10 -m "Battery is low! Consider charging!" -t 2m -N -i $HOME/.icons/batterylow.png
 
 # BLUETOOTH boatrockerz
 bindsym $mod+Shift+b exec bluetoothctl connect 00:05:18:01:47:C7

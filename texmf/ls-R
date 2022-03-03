@@ -1,6 +1,7 @@
 % ls-R -- filename database for kpathsea; do not change this line.
 ./:
 .:
+asytemp.asy
 ls-R
 tex
 
@@ -10,6 +11,10 @@ latex
 
 ./tex/latex:
 evan
+von
 
 ./tex/latex/evan:
 evan.sty
+
+./tex/latex/von:
+von.sty

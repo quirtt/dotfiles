@@ -1,0 +1,14 @@
+{
+    "currentVersionInfo": {
+        "version": "0.3.0",
+        "hasShownChangelog": true
+    },
+    "settings": {
+        "afkStatus": "dnd",
+        "afkTimeout": 5,
+        "backToOnlineDelay": 10.150053923373708,
+        "alwaysOnline": false,
+        "showToasts": true
+    },
+    "IdleSetByPlugin": false
+}
