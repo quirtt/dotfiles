@@ -2,7 +2,7 @@
  * @name Translator
  * @author DevilBro
  * @authorId 278543574059057154
- * @version 2.3.5
+ * @version 2.3.7
  * @description Allows you to translate Messages and your outgoing Messages within Discord
  * @invite Jx3TjNS
  * @donate https://www.paypal.me/MircoWittrien
@@ -17,7 +17,7 @@ module.exports = (_ => {
 		"info": {
 			"name": "Translator",
 			"author": "DevilBro",
-			"version": "2.3.5",
+			"version": "2.3.7",
 			"description": "Allows you to translate Messages and your outgoing Messages within Discord"
 		}
 	};
@@ -326,7 +326,8 @@ module.exports = (_ => {
 					"sl": "slo",
 					"sv": "swe",
 					"vi": "vie",
-					"zh-CN": "wyw",
+					"zh": "wyw",
+					"zh-CN": "zh",
 					"zh-TW": "cht"
 				},
 				key: "xxxxxxxxx xxxxxx xxxxxxxxxx"
@@ -400,11 +401,6 @@ module.exports = (_ => {
 			}
 			
 			onStart () {
-				// REMOVE 24.09.2021
-				let oldAuthKeys = BDFDB.DataUtils.load(this, "authKeys");
-				for (let key in oldAuthKeys) if (!BDFDB.ObjectUtils.is(oldAuthKeys[key])) oldAuthKeys[key] = {key: oldAuthKeys[key]};
-				BDFDB.DataUtils.save(oldAuthKeys, this, "authKeys")
-				
 				this.forceUpdateAll();
 			}
 			
@@ -525,10 +521,11 @@ module.exports = (_ => {
 					children.splice(index > -1 ? index + 1 : 0, 0, BDFDB.ContextMenuUtils.createItem(BDFDB.LibraryComponents.MenuItems.MenuItem, {
 						label: translated ? this.labels.context_messageuntranslateoption : this.labels.context_messagetranslateoption,
 						id: BDFDB.ContextMenuUtils.createItemId(this.name, translated ? "untranslate-message" : "translate-message"),
-						hint: hint && (_ => {
-							return BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.MenuItems.MenuHint, {
-								hint: hint
-							});
+						hint: hint && (_ => BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.MenuItems.MenuHint, {
+							hint: hint
+						})),
+						icon: _ => BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.MenuItems.MenuIcon, {
+							icon: translated ? translateIconUntranslate : translateIcon
 						}),
 						disabled: !translated && isTranslating,
 						action: _ => this.translateMessage(e.instance.props.message, e.instance.props.channel)
@@ -602,11 +599,9 @@ module.exports = (_ => {
 						label: translated ? this.labels.context_messageuntranslateoption : this.labels.context_messagetranslateoption,
 						disabled: isTranslating,
 						id: BDFDB.ContextMenuUtils.createItemId(this.name, translated ? "untranslate-message" : "translate-message"),
-						icon: _ => {
-							return BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.MenuItems.MenuIcon, {
-								icon: translated ? translateIconUntranslate : translateIcon
-							});
-						},
+						icon: _ => BDFDB.ReactUtils.createElement(BDFDB.LibraryComponents.MenuItems.MenuIcon, {
+							icon: translated ? translateIconUntranslate : translateIcon
+						}),
 						action: _ => this.translateMessage(e.instance.props.message, e.instance.props.channel)
 					}));
 				}
@@ -642,18 +637,18 @@ module.exports = (_ => {
 			
 			processChannelTextAreaForm (e) {
 				BDFDB.PatchUtils.patch(this, e.instance, "handleSendMessage", {instead: e2 => {
-					if (this.isTranslationEnabled(e.instance.props.channel.id) && e2.methodArguments[0]) {
+					if (this.isTranslationEnabled(e.instance.props.channel.id) && e2.methodArguments[0].value) {
 						e2.stopOriginalMethodCall();
-						this.translateText(e2.methodArguments[0], messageTypes.SENT, (translation, input, output) => {
-							translation = !translation ? e2.methodArguments[0] : (this.settings.general.sendOriginalMessage ? (translation + "\n\n> *" + e2.methodArguments[0].split("\n").join("*\n> *") + "*") : translation);
-							e2.originalMethod(translation);
+						this.translateText(e2.methodArguments[0].value, messageTypes.SENT, (translation, input, output) => {
+							translation = !translation ? e2.methodArguments[0].value : (this.settings.general.sendOriginalMessage ? (translation + "\n\n> *" + e2.methodArguments[0].value.split("\n").join("*\n> *") + "*") : translation);
+							e2.originalMethod(Object.assign({}, e2.methodArguments[0], {value: translation}));
 						});
 						return Promise.resolve({
 							shouldClear: true,
 							shouldRefocus: true
 						});
 					}
-					else return e2.callOriginalMethodAfterwards();
+					return e2.callOriginalMethodAfterwards();
 				}}, {force: true, noCache: true});
 			}
 

@@ -1,5 +1,8 @@
 #!/bin/zsh
 mkdir /tmp/Pictures
-import /tmp/Pictures/screenshot.png
-xclip -se c -t image/png -i /tmp/Pictures/screenshot.png
+import /tmp/Pictures/screenshot.jpg
+xclip -se c -t image/jpg -i /tmp/Pictures/screenshot.jpg
 
+
+# send image through adb
+adb push /tmp/Pictures/screenshot.jpg sdcard/DCIM/camera

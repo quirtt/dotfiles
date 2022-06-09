@@ -1,6 +1,8 @@
 {
-	"settings": {
-		"addJumpTo": true,
-		"cloneToTheTop": true
+	"all": {
+		"settings": {
+			"addJumpTo": true,
+			"cloneToTheTop": true
+		}
 	}
 }

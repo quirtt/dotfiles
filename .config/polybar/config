@@ -18,7 +18,7 @@
 
 [colors]
 ;background = ${xrdb:color0:#222}
-background = #1A1B3F89
+background = #FF1B3F89
 background-alt = #401B3F89
 ;foreground = ${xrdb:color7:#222}
 foreground = #ffffff
@@ -143,10 +143,10 @@ wrapping-scroll = false
 ; Only show workspaces on the same output as the bar
 ;pin-workspaces = true
 
-ws-icon-0 = 1;  
-ws-icon-1 = 2;  
-ws-icon-2 = 3; 
-ws-icon-3 = 4; 
+ws-icon-0 = 1;1  
+ws-icon-1 = 2;2  
+ws-icon-2 = 3;3 
+ws-icon-3 = 4;4 
 ws-icon-4 = 5;5
 ws-icon-5 = 6;6
 ws-icon-6 = 7;7

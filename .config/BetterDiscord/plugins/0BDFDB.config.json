@@ -1,21 +1,24 @@
 {
-	"changeLogs": {
-		"BDFDB": "2.1.4",
-		"BetterSearchPage": "1.2.0",
-		"ShowHiddenChannels": "3.0.4",
-		"SpotifyControls": "1.2.4",
-		"Translator": "2.3.2"
-	},
-	"choices": {
-		"toastPosition": "right"
-	},
-	"general": {
-		"showToasts": true,
-		"showSupportBadges": true,
-		"useChromium": false
-	},
-	"hashes": {
-		"0BDFDB.data.json": "80d580208c8f9b1eb9be735772c4810e1d156945",
-		"0BDFDB.raw.css": "a1036e10077b9457f3903795204f7dbd91d7646d"
+	"all": {
+		"changeLogs": {
+			"BDFDB": "2.3.0",
+			"BetterSearchPage": "1.2.0",
+			"ShowHiddenChannels": "3.0.4",
+			"SpotifyControls": "1.2.4",
+			"Translator": "2.3.2"
+		},
+		"choices": {
+			"toastPosition": "right"
+		},
+		"general": {
+			"showToasts": true,
+			"showSupportBadges": true,
+			"useChromium": false,
+			"shareData": true
+		},
+		"hashes": {
+			"0BDFDB.data.json": "4c29df47c8dee3140c64089d30c13b5ecd96e759",
+			"0BDFDB.raw.css": "e8d30d44e567f6a77ef4e90734c27c2b47306d20"
+		}
 	}
 }

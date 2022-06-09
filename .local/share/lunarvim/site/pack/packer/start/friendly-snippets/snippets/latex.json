@@ -556,5 +556,15 @@
     "prefix": "SSP",
     "body": "\\subparagraph{${1:${TM_SELECTED_TEXT}}}",
     "description": "subparagraph"
+  },
+  "von problem and solution": {
+    "prefix": "psvon",
+    "body": "\\begin{problem*} \\voninclude{$1} \\end{problem*}\n\\begin{soln} \\voninclude[1]{$1} \\end{soln}",
+    "description": "adds problem and solution from von"
+  },
+  "von problem, solution and remark": {
+    "prefix": "psrvon",
+    "body": "\\begin{problem*} \\voninclude{$1} \\end{problem*}\n\\begin{soln} \\voninclude[1]{$1} \\end{soln}\n\\begin{remark*} \\voninclude[2]{$1} \\end{remark*}",
+    "description": "adds problem and solution from von"
   }
 }

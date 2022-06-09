@@ -183,8 +183,8 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-gaps inner 10
-gaps outer 5
+gaps inner 5
+gaps outer 2
 set $mode_gaps Gaps: (o)uter, (i)nner, (h)orizontal, (v)ertical, (t)op, (r)ight, (b)ottom, (l)eft
 set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
 set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
@@ -338,7 +338,7 @@ client.urgent		$ubgcolor	$ubgcolor		$textcolor 	$ubgcolor
 #	}
 #}
 # Display Wallpaper
-exec_always feh --bg-fill /home/quirtt/Pictures/arch.jpeg
+exec_always feh --bg-fill /home/quirtt/Pictures/Qr0I1d.jpg
 
 # Keybinding for i3lock
 bindsym $mod+x exec /home/quirtt/.config/scripts/lock
@@ -367,8 +367,7 @@ focus_follows_mouse no
 focus_on_window_activation none
 
 # Polybar launch script
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-
+exec_always --no-startup-id killall -q polybar ; polybar example --config=~/.config/polybar/config & disown
 # Screenshot
 bindsym --release Print exec $HOME/.scripts/sshot
 bindsym --release Shift+Print exec flameshot gui
@@ -377,5 +376,5 @@ bindsym --release Shift+Print exec flameshot gui
 # i3-battery-popup
 exec_always --no-startup-id killall -q i3-battery-popup; i3-battery-popup -L 20 -l 10 -m "Battery is low! Consider charging!" -t 2m -N -i $HOME/.icons/batterylow.png
 
-# BLUETOOTH boatrockerz
-bindsym $mod+Shift+b exec bluetoothctl connect 00:05:18:01:47:C7
+# keybind for latexmk ing /tmp/von_preview.tex 
+bindsym --release $mod+F5 exec terminator --command="latexmk -pdf -pvc -interaction=nonstopmode /tmp/preview_quirtt/von_preview.tex 1> /dev/null"
