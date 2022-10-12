@@ -341,15 +341,15 @@ client.urgent		$ubgcolor	$ubgcolor		$textcolor 	$ubgcolor
 exec_always feh --bg-fill /home/quirtt/Pictures/Qr0I1d.jpg
 
 # Keybinding for i3lock
-bindsym $mod+x exec /home/quirtt/.config/scripts/lock
-bindsym $mod+Shift+x exec /home/quirtt/.config/scripts/lock_with_bluetooth
+bindsym $mod+x exec i3lock-fancy
+bindsym $mod+Shift+x exec bash /home/quirtt/.scripts/lock_with_bluetooth.sh
 # Assign programs to workspaces
 #  Spotify
 for_window [class="Spotify"] move to workspace $ws3
 #  Social
 for_window [class="discord"] move to workspace $ws4
 for_window [class="TelegramDesktop"] move to workspace $ws4
-
+for_window [class="i3lock-fancy"] move to workspace $ws6
 # Brightness
 bindsym XF86MonBrightnessUp exec brightnessctl -q set +5
 bindsym XF86MonBrightnessDown exec brightnessctl -q set $(($(brightnessctl get)-5))
@@ -360,7 +360,7 @@ exec_always picom --experimental-backend --config /home/quirtt/.config/picom.con
 # You can also use any non-zero value if you'd like to have a border
 for_window [class=".*"] border pixel 0
 
-# Making mouse not follow focus
+# Making focus not follow mouse
 focus_follows_mouse no
 
 # Focus on window activation
@@ -378,3 +378,7 @@ exec_always --no-startup-id killall -q i3-battery-popup; i3-battery-popup -L 20 
 
 # keybind for latexmk ing /tmp/von_preview.tex 
 bindsym --release $mod+F5 exec terminator --command="latexmk -pdf -pvc -interaction=nonstopmode /tmp/preview_quirtt/von_preview.tex 1> /dev/null"
+
+#conky
+exec_always conky -d
+

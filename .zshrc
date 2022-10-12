@@ -21,22 +21,20 @@ run(){ latexmk -pdf -pvc -f -interaction=nonstopmode $1 1>/dev/null }
 export SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0
 wifi(){ bash $HOME/.scripts/wifi.sh $1 $2 }
 
-function comp {
-    g++ -Wall -Wextra -Wshadow -D_GLIBCXX_ASSERTIONS -DDEBUG -ggdb3 -fmax-errors=2 -o $1{,.cpp}
+function solve {
+    g++ $1.cpp -Wall -Wextra -Wshadow -D_GLIBCXX_ASSERTIONS -DDEBUG -ggdb3 -fmax-errors=2 -o main
     if [ $? -ne 0 ]; then
       echo "Compilation error."
     else
-      while read input
-      do
-        if [[ "$input"=="y" ]]
-        then
-          ./$1
-          echo 
-        fi
-      done
+      echo "Compilation successful. Running."
+      ./main 
     fi
 
 }
 function debug {
     (echo "run < $1.in" && cat) | gdb -q $1
 }
+
+alias syncplay-server='syncplay-server --salt EKCHCJUNLM --port 8999'
+
+export webdev="$HOME/Documents/dev/web/"
