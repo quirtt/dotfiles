@@ -1,10 +1,11 @@
-export ZSH="/home/quirtt/.oh-my-zsh"
-eval $(starship init zsh)
+source /usr/lib/spaceship-prompt/spaceship.zsh
 plugins=(git archlinux zsh-syntax-highlighting zsh-autosuggestions)
-source $ZSH/oh-my-zsh.sh
+source /home/quirtt/.oh-my-zsh/oh-my-zsh.sh
 alias dotfiles='git --git-dir=/home/quirtt/dotfiles/ --work-tree=/home/quirtt'
 ### HERE ###
 export PATH="$HOME/.poetry/bin:$PATH"
+source "/home/quirtt/.exec.sh"
+
 
 PATH="/home/quirtt/perl5/bin${PATH:+:${PATH}}"; export PATH;
 PERL5LIB="/home/quirtt/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
@@ -37,4 +38,6 @@ function debug {
 
 alias syncplay-server='syncplay-server --salt EKCHCJUNLM --port 8999'
 
-export webdev="$HOME/Documents/dev/web/"
+export AI="$HOME/Projects/AI/Langchain/"
+export PATH="$PATH:/home/quirtt/bin"
+export PATH="$PATH:/home/quirtt/Android/android-studio/bin"
